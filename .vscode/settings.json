@@ -1,0 +1,4 @@
+{
+    "debug.console.acceptSuggestionOnEnter": "on",
+    "terminal.integrated.suggest.runOnEnter": "always"
+}

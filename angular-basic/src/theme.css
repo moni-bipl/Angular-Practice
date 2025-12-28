@@ -1,0 +1,4 @@
+h1{
+    border: 1px solid black
+}
+/* if background color is available in both styles and theme css then path that is written after in angular.json will be applied  */

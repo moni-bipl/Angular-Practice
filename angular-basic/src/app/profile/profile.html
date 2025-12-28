@@ -1,1 +1,69 @@
 <h1>Profile Component</h1>
+
+@if(display){
+    <div style="width: 200px; height: 200px; background-color:rgb(6, 126, 126)">
+
+    </div>
+} 
+<button (click)="hide()" >{{display? 'hide':'show546'}}</button>
+<!-- @if(x>10){
+    <div style="width: 200px; height: 200px; background-color:rgb(6, 126, 126)">
+    
+    </div>
+} -->
+<br>
+<br>
+<button (click)="handleChange(1)">show blue</button>
+<button (click)="handleChange(2)">Show green</button>
+<button (click)="handleChange(3)">Show orange</button>
+<button (click)="handleChange(4)">Show pink</button>
+<input (selectionchange)="handleInput($event)"/>
+
+
+@if(color==1){
+
+    <div style="background-color:blue; width: 300px; height: 300px;">
+    
+    </div>
+}
+@else if(color==2){
+    <div style="background-color:rgb(26, 142, 39); width: 300px; height: 300px;">
+    
+    </div>
+
+}
+@else if(color==3){
+    <div style="background-color:rgb(240, 129, 19); width: 300px; height: 300px;">
+    
+    </div>
+
+}
+@else{
+    <div style="background-color:rgb(255, 0, 166); width: 300px; height: 300px;">
+    
+    </div>
+
+}
+
+@switch(color){
+    @case(1){
+            <h1 style="background-color:blue; color:white; width: 300px; height:300px;">
+                Blue
+            </h1>
+    }
+    @case(2){
+                    <h1 style="background-color:rgb(48, 188, 35); color:white; width: 300px; height: 300px;">
+                        green
+                    </h1>
+    }
+    @case(3){
+                    <h1 style="background-color:rgb(255, 204, 0); color:white; width: 300px; height: 300px;">
+                        orange
+                    </h1>
+    }
+    @default {
+                    <h1 style="background-color:rgb(255, 0, 204); color:white; width: 300px; height: 300px;">
+                        Pink
+                    </h1>
+    }
+}

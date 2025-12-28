@@ -14,3 +14,33 @@
 
 <h1>Function call on Button Click</h1>
 <button (click)="handleClickEvent()" >Click me</button>
+
+<h1>Counter App</h1>
+
+<div>
+  <h2 class="count">{{count}}</h2>
+  <div>
+    <!-- <button (click)="handleDecrement()">Decrement</button>
+    <button (click)="handleReset()">Reset</button>
+    <button (click)="handleIncrement()">Increment</button> -->
+    <button (click)="handleCounter('minus')">Decrement</button>
+    <button (click)="handleCounter('reset')">Reset</button>
+    <button (click)="handleCounter('plus')">Increment</button>
+
+
+  </div>
+</div>
+<br>
+<br>
+
+<button class="btn" (click)="handleEvent($event)">Event</button>
+
+<div (mouseenter)="handleEvent($event)" style="background-color:brown; width:100px; height:100px;"
+></div>
+<div (mouseleave)="handleEvent($event)" style="background-color:rgb(14, 119, 61); width:100px; height:100px;">
+</div>
+<style>
+  h2{
+    color:blue
+  }
+</style>
