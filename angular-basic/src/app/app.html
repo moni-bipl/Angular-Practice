@@ -1,0 +1,16 @@
+<h1>Hello world!</h1>
+<h2>{{name}}</h2>
+<h2>{{title()}}</h2>  <!-- double curly bracket is known as interpolation -->
+<h2>{{a==b}}</h2>
+<!-- <h2>{{b==c}}</h2> it give error that [This comparison appears to be unintentional because the types 'number' and 'string' have no overlap.]-->
+ {{"Moni".toUpperCase()}}
+ <!-- {{data=30}} we cannot do this -->
+  <!-- {{a++}} cannot do  -->
+<!-- we cannot use for loop -->
+
+<!-- interpolation limitation ->   we cannot assign value to variables or cannot create variable, cannot use loop, increment and decrement is also not allow -->
+<app-login></app-login>
+<app-profile></app-profile>
+
+<h1>Function call on Button Click</h1>
+<button (click)="handleClickEvent()" >Click me</button>
