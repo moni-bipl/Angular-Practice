@@ -1,0 +1,79 @@
+<p>template works!</p>
+
+<h3>Template Reference Variables (#var)</h3>
+<div class="toolbar">
+  <input #box type="text" placeholder="Type something" (input)="current = box.value" />
+  <button (click)="read(box.value)">Read value</button>
+  <button (click)="box.focus()">Focus input</button>
+  <span style="margin-left: 8px; color: #666">length={{ box.value.length || 0 }}</span>
+</div>
+<p>Current: {{ current || '(empty)' }}</p>
+
+<br />
+<br />
+
+<button (click)="toggle()">Toggle user</button>
+<p>Email:{{ user?.profile?.email || '(none)' }}</p>
+<!-- Nullish coalescing (??): Use a ?? b over a || b when you want to keep valid falsy values like 0 or ''. -->
+
+<h3>Templates with ngTemplateOutlet</h3>
+
+<label>
+  Type:
+  <select (change)="type = $any($event.target).value">
+    <option value="info">info</option>
+    <option value="warning">warning</option>
+    <option value="success">success</option>
+  </select>
+</label>
+
+<label> Message: <input (input)="msg = $any($event.target).value" [value]="msg" /> </label>
+
+<ng-container
+  [ngTemplateOutlet]="type === 'info' ? infoTpl : type === 'warning' ? warnTpl : successTpl"
+  [ngTemplateOutletContext]="{ $implicit: msg }"
+>
+</ng-container>
+
+<ng-template #infoTpl let-number>
+  <p style="color: royalblue">Info: {{ number }}</p>
+</ng-template>
+
+<ng-template #warnTpl let-text>
+  <p style="color: darkorange">Warning: {{ text }}</p>
+</ng-template>
+
+<ng-template #successTpl let-text>
+  <p style="color: seagreen">Success: {{ text }}</p>
+</ng-template>
+<!--   
+<ng-template>: Defines a reusable template block (not rendered until referenced).
+[ngTemplateOutlet]: Chooses which template to render (here via a ternary expression based on type).
+[ngTemplateOutletContext]: Passes values into the template. The $implicit key is read by a matching let- variable.
+let-text: Declares a local variable inside the template that reads the $implicit value from the context.
+<ng-container>: A logical wrapper that does not create extra DOM elements. -->
+
+<h3>Built-in pipes</h3>
+<p>Today:{{ today | date : 'yyyy-MM-dd' }}</p>
+<p>Name:{{ name | uppercase }}</p>
+<p>Chained:{{ ratio | percent : '1.0-2' | uppercase }}</p>
+<p>{{ amount | currency : 'USD' }}</p>
+<!-- 
+    What are Pipes in Templates (|)?
+Transform values for display using the | operator.
+Accept optional arguments (e.g., formats, locales).
+Multiple pipes can be chained. -->
+<h3>Attribute binding (attr.)</h3>
+<button [attr.aria-label]="label" (click)="toggleWide()">Toggle label</button>
+<table border="1" style="margin-top: 8px">
+  <tr>
+    <th>A</th>
+    <th>B</th>
+    <th>C</th>
+  </tr>
+  <tr>
+    <td [attr.colspan]="wide ? 2 : 1">Row 1</td>
+    <td>Cell</td>
+    <td>Cell</td>
+  </tr>
+</table>
