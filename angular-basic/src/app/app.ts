@@ -12,13 +12,56 @@ import { Injectable } from '@angular/core';
 import { LoggingInterceptor } from './logging-interceptor';
 import { headersInterceptor } from './headers-interceptor';
 
+@Injectable({providedIn:'root'})
+export class CounterService{
+  
+  value=0;
+  inc(){this.value++;}
+   
+  dec(){this.value--;}
+
+  reset(){this.value=0}
+}
+
+
+
+@Component({
+  selector: 'counter-a',
+  standalone: true,
+  template: `
+    <h4>Counter A</h4>
+    <p>Value: {{ counter.value }}</p>
+    <button (click)="counter.inc()">+1</button>
+    <button (click)="counter.dec()">-1</button>
+  `
+})
+export class CounterA {
+  constructor(public counter: CounterService) {}
+}
+
+@Component({
+  selector: 'counter-b',
+  standalone: true,
+  template: `
+    <h4>Counter B</h4>
+    <p>Value: {{ counter.value }}</p>
+    <button (click)="counter.inc()">+1</button>
+    <button (click)="counter.dec()">-1</button>
+  `
+})
+export class CounterB {
+  constructor(public counter: CounterService) {}
+}
+
 @Component({
   selector: 'app-root',
-  imports: [Login, Profile,Template,Form,CommonModule,Errorhandling],
+  imports: [Login, Profile,Template,Form,CommonModule,Errorhandling,CounterA,CounterB],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
+
+  constructor(public counter:CounterService){}
   protected readonly title = signal('angular-basic');//signal() is a reactive state container.  [A variable that Angular automatically tracks and updates the UI whenever its value changes.]
   name = "Moni Chaurasiya"  // these are properties of class 
   hello() {
