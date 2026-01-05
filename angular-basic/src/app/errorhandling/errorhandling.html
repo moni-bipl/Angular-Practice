@@ -1,0 +1,16 @@
+<p>errorhandling works!</p>
+
+<h3>Http error handling</h3>
+
+
+<div>
+    <button (click)="loadOk()" [disabled]="loading">Load OK</button>
+    <button (click)="loadFail()" [disabled]="loading" >Load Fail</button>
+    <button (click)="retry()" [disabled]="!lastAction">Retry</button>
+</div>
+<p *ngIf="loading">Loading...</p>
+<P *ngIf="error" class="error">{{error}}</P>
+<p *ngIf="!error && data" class="ok">Loaded {{isArray(data) ? data.length+' item':'1 item'}}</p>
+<ul *ngIf="isArray(data)">
+    <li *ngFor="let u of data">{{u.name}} ({{u.email}})</li>
+</ul>
