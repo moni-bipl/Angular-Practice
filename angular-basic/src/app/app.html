@@ -1,19 +1,20 @@
 <h1>Hello world!</h1>
 <h2>{{name}}</h2>
-<h2>{{title()}}</h2>  <!-- double curly bracket is known as interpolation -->
+<h2>{{title()}}</h2> <!-- double curly bracket is known as interpolation -->
 <h2>{{a==b}}</h2>
 <!-- <h2>{{b==c}}</h2> it give error that [This comparison appears to be unintentional because the types 'number' and 'string' have no overlap.]-->
- {{"Moni".toUpperCase()}}
- <!-- {{data=30}} we cannot do this -->
-  <!-- {{a++}} cannot do  -->
+{{"Moni".toUpperCase()}}
+<!-- {{data=30}} we cannot do this -->
+<!-- {{a++}} cannot do  -->
 <!-- we cannot use for loop -->
 
 <!-- interpolation limitation ->   we cannot assign value to variables or cannot create variable, cannot use loop, increment and decrement is also not allow -->
-<app-login></app-login>
-<app-profile></app-profile>
-
+<app-profile (getUsers)="handleUserFromParentToProfileChild($event)"></app-profile>
+@for(user of user;track user){
+<h2>{{user}}</h2>
+}
 <h1>Function call on Button Click</h1>
-<button (click)="handleClickEvent()" >Click me</button>
+<button (click)="handleClickEvent()">Click me</button>
 
 <h1>Counter App</h1>
 
@@ -35,16 +36,16 @@
 
 <button class="btn" (click)="handleEvent($event)">Event</button>
 
-<div (mouseenter)="handleEvent($event)" style="background-color:brown; width:100px; height:100px;"
-></div>
+<div (mouseenter)="handleEvent($event)" style="background-color:brown; width:100px; height:100px;"></div>
 <div (mouseleave)="handleEvent($event)" style="background-color:rgb(14, 119, 61); width:100px; height:100px;">
 </div>
 <style>
-  h2{
-    color:blue
+  h2 {
+    color: blue
   }
 </style>
 
+<<<<<<< Updated upstream
 <app-template></app-template>
 <app-form></app-form>
 
@@ -74,3 +75,54 @@
     <counter-a></counter-a>
     <counter-b></counter-b>
     <p><em>Both components use the same CounterService instance.</em></p>
+=======
+<h1>TODO App</h1>
+<input [(ngModel)]="task" type="text" placeholder="Enter New Task">
+<button (click)="AddTask()">Add task</button>
+@for(t of taskList;track t){
+<ul style="display:flex; flex-direction: row; gap: calc(3px); list-style: none; ">
+  <li>{{t.id}}</li>
+  <li>
+    {{t.task}}
+  </li>
+  <li>
+    <button (click)="DeleteTask(t.id)">Delete</button>
+  </li>
+</ul>
+}
+
+<app-template></app-template>
+
+<h1 [style.backgroundColor]="color" [style.fontSize.px]="zoom ? fontSize: SmallfontSize">Dynamic Style</h1>
+<button (click)="toggleZoom()">Zoom</button>
+
+<!-- In Angular, directives are classes marked with the @Directive decorator that add behavior or transform the DOM, allowing you to manipulate elements' appearance or structure, with three main types: Components (directives with templates, like app-root), Structural Directives (change DOM layout, e.g., *ngIf, *ngFor), and Attribute Directives (change look/behavior, e.g., ngModel, ngStyle). They are fundamental for creating dynamic, reusable UIs and feature-rich components in Angular applications. 
+
+Types of Directives
+
+Components: The most common type; they are directives with a template (HTML/CSS) that define a reusable UI block, like <app-header> or <router-outlet>.
+
+Structural Directives: Alter the DOM's structure by adding or removing elements.
+*ngIf: Conditionally renders an element.
+*ngFor: Repeats a block for each item in a list.
+*ngSwitch: Selects one of many elements to display.
+
+Attribute Directives: Change an element's appearance, behavior, or layout.
+ngStyle: Applies inline styles dynamically.
+ngClass: Adds/removes CSS classes.
+ngModel: Two-way data binding for form inputs.  -->
+
+<li *ngFor="let x of students">{{x}}</li>
+
+<h1>Pass Data to child component</h1>
+<!-- <app-login user="moni chaurasiya"></app-login> -->
+<!-- <app-login [user]="userName"></app-login> -->
+<app-login [user]="userName"></app-login>
+
+
+<select #selectedUser (change)="onUserChange(selectedUser.value)">
+  <option value="moni chaurasiya">Moni Chaurasiya</option>
+  <option value="soni">Soni Chaurasiya</option>
+  <option value="avanish">Avanish Chaurasiya</option>
+</select>
+>>>>>>> Stashed changes

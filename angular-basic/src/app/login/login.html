@@ -1,2 +1,44 @@
+<<<<<<< Updated upstream
 <p style="background-color: blue;">login works!</p>
 <p>Hello {{ names }} from child!</p>
+=======
+<p style="background-color: blue;">login Form</p>
+<form type="submit">
+    <input type="text" placeholder="enter Name" [formControl]="name">
+    <br>
+    <input type="text" placeholder="enter password" [formControl]="password">
+    <button (click)="DisplayValue()">Login</button>
+    <button (click)="setValue()">Set value</button>
+    <h3>{{name.value}}</h3>
+    <h3>{{password.value}}</h3>
+</form>
+<br>
+<br>
+
+<form action="" method="get" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="enter name" formControlName="namee">
+    <span *ngIf="names?.hasError('required')">*</span>
+    <span *ngIf="names?.invalid &&(names?.dirty || names?.touched)">provide enter</span>
+    <br>
+    <br>
+
+    <input type="text" placeholder="enter password" formControlName="passwords">
+    <span *ngIf="passwords?.hasError('required')">*</span>
+    <span *ngIf="passwords?.invalid &&(passwords?.dirty || passwords?.touched)">provide password</span>
+
+    <br>
+    <br>
+
+    <input type="text" placeholder="enter email" formControlName="emaill">
+    <span *ngIf="email?.hasError('required')">*</span>
+    <span *ngIf="email?.invalid &&(email?.dirty || email?.touched)">provide valid email</span>
+    <br>
+    <br>
+
+    <button>Submit</button>
+    <!-- <button (click)="setValues()">Set Value</button> -->
+</form>
+
+<h3>{{profileForm.value.emaill}}</h3>
+<h1>User name coming from parent is {{user}}</h1>
+>>>>>>> Stashed changes

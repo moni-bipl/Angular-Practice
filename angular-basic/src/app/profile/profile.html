@@ -1,11 +1,11 @@
 <h1>Profile Component</h1>
 
 @if(display){
-    <div style="width: 200px; height: 200px; background-color:rgb(6, 126, 126)">
+<div style="width: 200px; height: 200px; background-color:rgb(6, 126, 126)">
 
-    </div>
-} 
-<button (click)="hide()" >{{display? 'hide':'show546'}}</button>
+</div>
+}
+<button (click)="hide()">{{display? 'hide':'show546'}}</button>
 <!-- @if(x>10){
     <div style="width: 200px; height: 200px; background-color:rgb(6, 126, 126)">
     
@@ -17,53 +17,124 @@
 <button (click)="handleChange(2)">Show green</button>
 <button (click)="handleChange(3)">Show orange</button>
 <button (click)="handleChange(4)">Show pink</button>
-<input (selectionchange)="handleInput($event)"/>
+<input (selectionchange)="handleInput($event)" />
 
 
 @if(color==1){
 
-    <div style="background-color:blue; width: 300px; height: 300px;">
-    
-    </div>
+<div style="background-color:blue; width: 300px; height: 300px;">
+
+</div>
 }
 @else if(color==2){
-    <div style="background-color:rgb(26, 142, 39); width: 300px; height: 300px;">
-    
-    </div>
+<div style="background-color:rgb(26, 142, 39); width: 300px; height: 300px;">
+
+</div>
 
 }
 @else if(color==3){
-    <div style="background-color:rgb(240, 129, 19); width: 300px; height: 300px;">
-    
-    </div>
+<div style="background-color:rgb(240, 129, 19); width: 300px; height: 300px;">
+
+</div>
 
 }
 @else{
-    <div style="background-color:rgb(255, 0, 166); width: 300px; height: 300px;">
-    
-    </div>
+<div style="background-color:rgb(255, 0, 166); width: 300px; height: 300px;">
+
+</div>
 
 }
 
 @switch(color){
-    @case(1){
-            <h1 style="background-color:blue; color:white; width: 300px; height:300px;">
-                Blue
-            </h1>
-    }
-    @case(2){
-                    <h1 style="background-color:rgb(48, 188, 35); color:white; width: 300px; height: 300px;">
-                        green
-                    </h1>
-    }
-    @case(3){
-                    <h1 style="background-color:rgb(255, 204, 0); color:white; width: 300px; height: 300px;">
-                        orange
-                    </h1>
-    }
-    @default {
-                    <h1 style="background-color:rgb(255, 0, 204); color:white; width: 300px; height: 300px;">
-                        Pink
-                    </h1>
-    }
+@case(1){
+<h1 style="background-color:blue; color:white; width: 300px; height:300px;">
+    Blue
+</h1>
 }
+@case(2){
+<h1 style="background-color:rgb(48, 188, 35); color:white; width: 300px; height: 300px;">
+    green
+</h1>
+}
+@case(3){
+<h1 style="background-color:rgb(255, 204, 0); color:white; width: 300px; height: 300px;">
+    orange
+</h1>
+}
+@default {
+<h1 style="background-color:rgb(255, 0, 204); color:white; width: 300px; height: 300px;">
+    Pink
+</h1>
+}
+}
+
+@for(user of users; track user){
+<h1>{{user}}</h1>
+}
+
+<hr>
+<hr>
+
+@for(val of students;track val ; let id=$index){
+<h2>
+    <span>{{id+1}}</span>
+    <span>{{val.name}}</span>
+    <span>{{val.age}}</span>
+    <span>{{val.email}}</span>
+    <button (click)="getName(val.name)">Get Name</button>
+</h2>
+}
+<h2>{{count()}}</h2>
+<button (click)="updateCount()">increment count</button>
+<button (click)="count.set(count()-1)">decrement count</button>
+
+<h1>{{counts()}}</h1>
+<p>{{showValue()}}</p>
+<p>{{z()}}</p>
+
+<button (click)="updateZ()">Update</button>
+<h3>{{c()}}</h3>
+@if(displayHeading){
+<h1>Heading is displaying</h1>
+}
+<button (click)="toggleValue()">Display Heading</button>
+
+
+@for(name of users;track name; let i=$index ;let f=$first; let l=$last){
+@if($first){
+<h1 style="background-color: brown; color: white; font-size: large;">first is {{i+1}} -> {{name}}</h1>
+<h2>First is {{$first}}</h2>
+
+}
+
+@else if($last){
+<h1 style="background-color: brown; color: white; font-size: large;">Last is {{i+1}} -> {{name}}</h1>
+<h2>Last is {{$last}}</h2>
+
+}
+
+}
+@for(name of users; track name;){
+@if($even){
+<h1 style="background-color: rgb(22, 117, 38); color: white; font-size: large;">first is {{$index+1}} -> {{name}}</h1>
+
+}
+
+}
+@for(name of profile;track name; let i=$index ;let f=$first; let l=$last){
+<h3>{{$count}}</h3>
+}
+@empty {
+<h3>no record found</h3>
+}
+<!-- Two way binding -->
+<h1> Two way binding</h1>
+<!-- <input [(ngModel)]="name" type="text" placeholder="enter name"> -->
+<input (input)="changeName($event)" type="text" placeholder="enter name">
+
+
+<h1>{{name}}</h1>
+
+<h1>Child Component from Profile</h1>
+<button (click)="getUsers.emit(profileName)">Profile Data1</button>
+<button (click)="loadData()">Profile Data1</button>

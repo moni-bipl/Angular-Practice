@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Login } from './login/login';
 import { Profile } from './profile/profile';
 import { Template } from './template/template';
+<<<<<<< Updated upstream
 import { Form } from './form/form';
 import {provideHttpClient,HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { CommonModule } from '@angular/common';
@@ -56,6 +57,14 @@ export class CounterB {
 @Component({
   selector: 'app-root',
   imports: [Login, Profile,Template,Form,CommonModule,Errorhandling,CounterA,CounterB],
+=======
+import { FormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  imports: [Login, Profile, Template, FormsModule, NgFor],
+>>>>>>> Stashed changes
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -103,13 +112,14 @@ export class App {
       this.count = 0
     }
   }
-  
-  handleEvent(event:any){
+
+  handleEvent(event: any) {
     console.log("function called", event.type);
     console.log("function called", (event.target as HTMLElement).classList);
     console.log("function called", (event.target as HTMLElement).className);
 
   }
+<<<<<<< Updated upstream
 
   //httpClient
   http=inject(HttpClient);
@@ -156,6 +166,40 @@ HTTP Interceptors in Angular are classes that implement the HttpInterceptor inte
 
 read more on -->> https://medium.com/@jaydeepvpatil225/http-interceptors-in-angular-6e9891ae0538
 */
+=======
+  task = ""
+  taskList: { id: number, task: string }[] = []
+  AddTask() {
+    this.taskList.push({ id: this.taskList.length + 1, task: this.task })
+    this.task = ' '
+    console.log(this.taskList)
+  }
+  DeleteTask(taskid: number) {
+    this.taskList = this.taskList.filter((item) => item.id != taskid)
+  }
+  color = "red"
+  fontSize = 50
+  SmallfontSize = 30
+  zoom = true
+
+  toggleZoom() {
+    this.zoom = !this.zoom
+
+  }
+
+  students = ["moni", "soni", "avanish", "Peter"]
+
+  userName = "Monii"
+
+  onUserChange(user: string) {
+    this.userName = user
+  }
+  user: undefined | string[]
+  handleUserFromParentToProfileChild(user: string[]) {
+    this.user = user;
+    console.log(user)
+  }
+>>>>>>> Stashed changes
 }
 
 bootstrapApplication(App,{providers:[
