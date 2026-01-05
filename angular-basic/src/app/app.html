@@ -46,3 +46,27 @@
 </style>
 
 <app-template></app-template>
+<app-form></app-form>
+
+<h3>HttpClient</h3>
+<button (click)="load()">Load User</button>
+<p *ngIf="loading">Loading...</p>
+<p *ngIf="error" style="color:crimson">{{error}}</p>
+<ul>
+  <li *ngFor="let u of users">
+    {{u.name}} ({{u.email}})
+  </li>
+</ul>
+
+
+<h3>HttpClient</h3>
+<button (click)="createPost()" [disabled]="loading">Create post</button>
+<p *ngIf="loading">Sending...</p>
+<p *ngIf="error" style="color:crimson">{{error}}</p>
+<div *ngIf="result">
+    <p>Create Post ID:{{result.id}}</p>
+    <p>Title:{{result.title}}</p>
+</div>
+
+
+<app-errorhandling></app-errorhandling>

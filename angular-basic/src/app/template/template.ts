@@ -1,8 +1,19 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Login } from '../login/login';
+
+@Component({
+  selector: 'hello-comp',
+  standalone: true,
+  template: `<p>Hello {{ namess }} from child!</p>`
+})
+export class HelloComponent {
+  @Input() namess = '';
+}
+
 @Component({
   selector: 'app-template',
-  imports: [CommonModule],
+  imports: [CommonModule,Login,HelloComponent],
   templateUrl: './template.html',
   styleUrl: './template.css',
 })
@@ -34,5 +45,6 @@ export class Template {
   toggleWide(){
     this.wide=!this.wide
   }
+ users="Moni Chaurasiya"
 }
 
