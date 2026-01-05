@@ -1,10 +1,6 @@
-<<<<<<< Updated upstream
-import { Component, Input } from '@angular/core';
-=======
 import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-login',
@@ -13,9 +9,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './login.css',
 })
 export class Login {
-<<<<<<< Updated upstream
- @Input() names='';
-=======
   // name = new FormControl("moni");
   name = new FormControl();
   password = new FormControl();
@@ -56,5 +49,4 @@ export class Login {
     })
   }
   @Input() user: string = '';
->>>>>>> Stashed changes
 }

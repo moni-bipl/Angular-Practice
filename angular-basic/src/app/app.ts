@@ -1,11 +1,10 @@
-import { Component, signal,inject } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Login } from './login/login';
 import { Profile } from './profile/profile';
 import { Template } from './template/template';
-<<<<<<< Updated upstream
 import { Form } from './form/form';
-import {provideHttpClient,HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http'
+import { provideHttpClient, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { Errorhandling } from './errorhandling/errorhandling';
@@ -13,15 +12,15 @@ import { Injectable } from '@angular/core';
 import { LoggingInterceptor } from './logging-interceptor';
 import { headersInterceptor } from './headers-interceptor';
 
-@Injectable({providedIn:'root'})
-export class CounterService{
-  
-  value=0;
-  inc(){this.value++;}
-   
-  dec(){this.value--;}
+@Injectable({ providedIn: 'root' })
+export class CounterService {
 
-  reset(){this.value=0}
+  value = 0;
+  inc() { this.value++; }
+
+  dec() { this.value--; }
+
+  reset() { this.value = 0 }
 }
 
 
@@ -37,7 +36,7 @@ export class CounterService{
   `
 })
 export class CounterA {
-  constructor(public counter: CounterService) {}
+  constructor(public counter: CounterService) { }
 }
 
 @Component({
@@ -51,26 +50,18 @@ export class CounterA {
   `
 })
 export class CounterB {
-  constructor(public counter: CounterService) {}
+  constructor(public counter: CounterService) { }
 }
 
 @Component({
   selector: 'app-root',
-  imports: [Login, Profile,Template,Form,CommonModule,Errorhandling,CounterA,CounterB],
-=======
-import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
-
-@Component({
-  selector: 'app-root',
-  imports: [Login, Profile, Template, FormsModule, NgFor],
->>>>>>> Stashed changes
+  imports: [Login, Profile, Template, Form, CommonModule, CounterA, CounterB],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
 
-  constructor(public counter:CounterService){}
+  constructor(public counter: CounterService) { }
   protected readonly title = signal('angular-basic');//signal() is a reactive state container.  [A variable that Angular automatically tracks and updates the UI whenever its value changes.]
   name = "Moni Chaurasiya"  // these are properties of class 
   hello() {
@@ -119,54 +110,53 @@ export class App {
     console.log("function called", (event.target as HTMLElement).className);
 
   }
-<<<<<<< Updated upstream
 
   //httpClient
-  http=inject(HttpClient);
-  users: any[]=[];
-  loading=false;
-  error='';
+  http = inject(HttpClient);
+  users: any[] = [];
+  loading = false;
+  error = '';
 
-  load(){
-    this.loading=true;
-    this.error='';
+  load() {
+    this.loading = true;
+    this.error = '';
     this.http.get<any[]>('https://jsonplaceholder.typicode.com/users').subscribe({
-      next:(data:any)=>{this.users=data;this.loading=false;},
-      error:(err:any)=>{this.error='failed to load users'; this.loading=false;}
+      next: (data: any) => { this.users = data; this.loading = false; },
+      error: (err: any) => { this.error = 'failed to load users'; this.loading = false; }
 
-  
+
     });
-    
+
   }
-  result:any=null;
-  createPost(){
-    this.loading=true;
-    this.error='';
-    this.result=null;
-    this.http.post<any>('https://jsonplaceholder.typicode.com/posts',{
-      title:'profile',
-      body:'Moni Chaurasiya',
-      userId:1
+  result: any = null;
+  createPost() {
+    this.loading = true;
+    this.error = '';
+    this.result = null;
+    this.http.post<any>('https://jsonplaceholder.typicode.com/posts', {
+      title: 'profile',
+      body: 'Moni Chaurasiya',
+      userId: 1
     }).subscribe({
-      next:(res)=>{this.result=res;this.loading=false;},
-      error:()=>{this.error='failed to create post'; this.loading=false}
+      next: (res) => { this.result = res; this.loading = false; },
+      error: () => { this.error = 'failed to create post'; this.loading = false }
     })
   }
-/*
-What is an HTTP Interceptor?
-· HTTP Interceptors are a concept in web development and server-side programming, typically associated with web frameworks and libraries.
-
-· These interceptors allow developers to intercept and handle HTTP requests and responses globally within an application.
+  /*
+  What is an HTTP Interceptor?
+  · HTTP Interceptors are a concept in web development and server-side programming, typically associated with web frameworks and libraries.
   
-HTTP Interceptors in Angular are classes that implement the HttpInterceptor interface.
+  · These interceptors allow developers to intercept and handle HTTP requests and responses globally within an application.
+    
+  HTTP Interceptors in Angular are classes that implement the HttpInterceptor interface.
+  
+  · They can be used to perform various tasks related to HTTP requests and responses, such as adding headers, handling errors, modifying the request or response data, logging, authentication, etc.
+  
+  · HttpInterceptor defines a single method called intercept, which takes two parameters: the HttpRequest and the HttpHandler.
+  
+  read more on -->> https://medium.com/@jaydeepvpatil225/http-interceptors-in-angular-6e9891ae0538
+  */
 
-· They can be used to perform various tasks related to HTTP requests and responses, such as adding headers, handling errors, modifying the request or response data, logging, authentication, etc.
-
-· HttpInterceptor defines a single method called intercept, which takes two parameters: the HttpRequest and the HttpHandler.
-
-read more on -->> https://medium.com/@jaydeepvpatil225/http-interceptors-in-angular-6e9891ae0538
-*/
-=======
   task = ""
   taskList: { id: number, task: string }[] = []
   AddTask() {
@@ -199,19 +189,20 @@ read more on -->> https://medium.com/@jaydeepvpatil225/http-interceptors-in-angu
     this.user = user;
     console.log(user)
   }
->>>>>>> Stashed changes
 }
 
-bootstrapApplication(App,{providers:[
-  provideHttpClient(),
- {
-  provide:HTTP_INTERCEPTORS,
-  useClass:LoggingInterceptor,
-  multi:true
- },
- {
-  provide:HTTP_INTERCEPTORS,
-  useClass:headersInterceptor,
-  multi:true
- }
-]});
+bootstrapApplication(App, {
+  providers: [
+    provideHttpClient(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: headersInterceptor,
+      multi: true
+    }
+  ]
+});

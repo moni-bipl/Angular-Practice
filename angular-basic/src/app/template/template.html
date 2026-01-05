@@ -29,10 +29,8 @@
 
 <label> Message: <input (input)="msg = $any($event.target).value" [value]="msg" /> </label>
 
-<ng-container
-  [ngTemplateOutlet]="type === 'info' ? infoTpl : type === 'warning' ? warnTpl : successTpl"
-  [ngTemplateOutletContext]="{ $implicit: msg }"
->
+<ng-container [ngTemplateOutlet]="type === 'info' ? infoTpl : type === 'warning' ? warnTpl : successTpl"
+  [ngTemplateOutletContext]="{ $implicit: msg }">
 </ng-container>
 
 <ng-template #infoTpl let-number>
@@ -80,6 +78,6 @@ Multiple pipes can be chained. -->
 
 <br>
 <br>
-<app-login [names]="users"></app-login>
+<app-login [user]="users"></app-login>
 <h3>Parent Component</h3>
 <hello-comp [namess]="users"></hello-comp>

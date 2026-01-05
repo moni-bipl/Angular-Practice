@@ -45,7 +45,7 @@
   }
 </style>
 
-<<<<<<< Updated upstream
+
 <app-template></app-template>
 <app-form></app-form>
 
@@ -75,9 +75,9 @@
     <counter-a></counter-a>
     <counter-b></counter-b>
     <p><em>Both components use the same CounterService instance.</em></p>
-=======
+
 <h1>TODO App</h1>
-<input [(ngModel)]="task" type="text" placeholder="Enter New Task">
+<input [value]="task" (input)="task = $event.target.value" type="text" placeholder="Enter New Task">
 <button (click)="AddTask()">Add task</button>
 @for(t of taskList;track t){
 <ul style="display:flex; flex-direction: row; gap: calc(3px); list-style: none; ">
@@ -125,4 +125,4 @@ ngModel: Two-way data binding for form inputs.  -->
   <option value="soni">Soni Chaurasiya</option>
   <option value="avanish">Avanish Chaurasiya</option>
 </select>
->>>>>>> Stashed changes
+
