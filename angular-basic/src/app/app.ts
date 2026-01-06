@@ -11,6 +11,8 @@ import { Errorhandling } from './errorhandling/errorhandling';
 import { Injectable } from '@angular/core';
 import { LoggingInterceptor } from './logging-interceptor';
 import { headersInterceptor } from './headers-interceptor';
+import { ParentComponent } from './lifecycle-hooks/lifecycle-hooks';
+import { AComponent } from './lifecycle-hooks/lifecycle-contentInit';
 
 @Injectable({ providedIn: 'root' })
 export class CounterService {
@@ -55,7 +57,7 @@ export class CounterB {
 
 @Component({
   selector: 'app-root',
-  imports: [Login, Profile, Template, Form, CommonModule, CounterA, CounterB],
+  imports: [Login, Profile, Template, Form, CommonModule, CounterA, CounterB,ParentComponent,AComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
