@@ -1,0 +1,59 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+  <div class="form-group">
+    <label for="name">Name *</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      [class.error]="name?.invalid && name?.touched"
+    />
+    <div *ngIf="name?.invalid && name?.touched" class="error-message">
+      <div *ngIf="name?.errors?.['required']">Name is required</div>
+      <div *ngIf="name?.errors?.['minlength']">Name must be at least 2 characters</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email *</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      [class.error]="email?.invalid && email?.touched"
+    />
+    <div *ngIf="email?.invalid && email?.touched" class="error-message">
+      <div *ngIf="email?.errors?.['required']">Email is required</div>
+      <div *ngIf="email?.errors?.['email']">Valid email is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="age">Age *</label>
+    <input
+      type="number"
+      id="age"
+      formControlName="age"
+      [class.error]="age?.invalid && age?.touched"
+    />
+    <div *ngIf="age?.invalid && age?.touched" class="error-message">
+      <div *ngIf="age?.errors?.['required']">Age is required</div>
+      <div *ngIf="age?.errors?.['min']">Must be at least 18</div>
+      <div *ngIf="age?.errors?.['max']">Must be 120 or less</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="city">City *</label>
+    <input
+      type="text"
+      id="city"
+      formControlName="city"
+      [class.error]="city?.invalid && city?.touched"
+    />
+    <div *ngIf="city?.invalid && city?.touched" class="error-message">
+      <div *ngIf="city?.errors?.['required']">City is required</div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="userForm.invalid || isSubmitting" class="btn btn-primary">
+      {{ isSubmitting ? 'Saving...' : user ? 'Update User' : 'Create User' }}</button
+    ><button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
+  </div>
+</form>

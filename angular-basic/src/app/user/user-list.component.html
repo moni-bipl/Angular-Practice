@@ -1,0 +1,73 @@
+<div class="user-list-container">
+  <div class="header">
+    <h1>User Management</h1>
+    <div class="header-actions">
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Search users..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          class="search-input"
+        />
+      </div>
+      <button routerLink="/users/new" class="btn btn-primary">Add New User</button>
+    </div>
+  </div>
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading users...</p>
+  </div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="!loading && !error" class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+
+          <th>Age</th>
+          <th>City</th>
+
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="user-row">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.age }}</td>
+          <td>{{ user.city }}</td>
+          <td>{{ user.createdAt | date : 'short' }}</td>
+          <td class="actions">
+            <button [routerLink]="['/users', user.id, 'edit']" class="btn btn-sm btn-secondary">
+              Edit
+            </button>
+            <button (click)="deleteUser(user.id!)" class="btn btn-sm btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="users.length === 0" class="no-data">No users found.</div>
+  </div>
+  <div *ngIf="totalPages > 1" class="pagination">
+    <button
+      (click)="onPageChange(currentPage - 1)"
+      [disabled]="currentPage === 1"
+      class="btn btn-outline"
+    >
+      Previous
+    </button>
+    <span class="page-info"> Page {{ currentPage }} of {{ totalPages }} </span>
+    <button
+      (click)="onPageChange(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+      class="btn btn-outline"
+    >
+      Next
+    </button>
+  </div>
+</div>
